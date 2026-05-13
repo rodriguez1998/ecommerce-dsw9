@@ -6,8 +6,7 @@ const session      = require('express-session');
 const cookieParser = require('cookie-parser');
 const ejsLayouts   = require('express-ejs-layouts');
 const sequelize    = require('./config/database');
-// const { Product, Order, OrderItem } = require('./models');
-
+const { Product, Order, OrderItem } = require('./models');
 const productRoutes  = require('./routes/products');
 const cartRoutes     = require('./routes/cart');
 const checkoutRoutes = require('./routes/checkout');
@@ -40,14 +39,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.send(`
     Hello World - BERNARDO RODRIGUEZ
     La aplicacion funciona en Render.
     Puerto: ${port} | Entorno: ${process.env.NODE_ENV || 'development'}
   `);
 });
-// app.use('/',         productRoutes);
+*/
+app.use('/',         productRoutes);
 app.use('/cart',     cartRoutes);
 app.use('/checkout', checkoutRoutes);
 
